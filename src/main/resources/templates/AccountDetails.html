@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/default">
+<head>
+    <title>Account Details</title>
+</head>
+<body>
+
+<div id="topContainer" class="container" layout:fragment="content">
+    <div id="mainContent" class="container">
+        <h1>Account details</h1>
+
+        <div id="accountDetails" class="container">
+            <table class="table table-bordered row">
+                <tr class="row info">
+                    <th th:text="${'View Transactions for account: ' + account.accountNo}" colspan="4">Chequing /
+                        Savings
+                    </th>
+                </tr>
+                <tr class="row">
+                    <td class="col-md-3 warning">
+                        <span class="text-warning">Current Balance</span>
+                    </td>
+                    <td class="col-md-3">
+                        <span th:text="${account.balance}">566</span>
+                    </td>
+                    <td class="col-md-3 warning" th:switch="${accountType}">
+                    <span th:case="'CreditCard'" class="text-warning"
+                          th:text="|Available Credits|">Available Balance</span>
+                        <span th:case="*" class="text-warning">Available Balance</span>
+                    </td>
+                    <td class="col-md-3" th:switch="${accountType}">
+                    <span th:case="'CreditCard'"
+                          th:text="|${account.maxCredit - account.balance} of ${account.maxCredit} Limit|">566</span>
+                        <span th:case="*" th:text="${account.balance}">566</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="transactionDetails" class="container">
+            <table class="table table-bordered row">
+                <tr class="row info">
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Credit(Withdraw)</th>
+                    <th>Debit(Deposit)</th>
+                </tr>
+                <tr class="row" th:each="transaction : ${account.transactions}">
+                    <td class="col-md-3">
+                        <span th:text="${transaction.date}">Current Balance</span>
+                    </td>
+                    <td class="col-md-3">
+                        <span th:text="${transaction.description}">Current Balance</span>
+                    </td>
+                    <td class="col-md-3">
+                        <span th:if="${transaction.transactionType.name() == 'Credit'}" th:text="${transaction.amount}">Current Balance</span>
+                    </td>
+                    <td class="col-md-3">
+                    <span th:if="${transaction.transactionType.name() == 'Debit'}"
+                          th:text="${transaction.amount}"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!--<div layout:fragment="script">
+    <script src="js/Chart.min.js"></script>
+    <script src="js/myPieChart.js"></script>
+</div>-->
+</body>
+</html>

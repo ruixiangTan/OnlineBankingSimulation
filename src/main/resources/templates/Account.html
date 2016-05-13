@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml"
+      layout:decorator="layout/default">
+<head>
+    <title>Account Management</title>
+</head>
+<body>
+
+<div id="topContainer" class="container" layout:fragment="content">
+
+    <div id="quick-transfers" class="container">
+
+        <h2 th:text="${'Welcome Back! ' + user.firstName + ' ' + user.lastName}">Welcome, </h2>
+
+        <form class="form-inline" action="/account" method="post">
+
+            <table class="table table-bordered row">
+                <tr class="row info">
+                    <th class="row" colspan="2">Quick Payments & Transfers</th>
+                </tr>
+                <tr class="row">
+                    <td class="col-xs-4">
+                        <label for="from">From:</label>
+                    </td>
+                    <td class="col-lg-8">
+                        <select name="fromAccount" class="form-control" id="from">
+                            <option value="Chequing"
+                                    th:text="${'Chequing' + ' ' + user.checkingAccount.branchNo + '-' + user.checkingAccount.accountNo + ' = $ ' + user.checkingAccount.balance}">
+                                Chequing Account
+                            </option>
+                            <option value="Saving"
+                                    th:text="${'Saving' + ' ' + user.savingAccount.branchNo + '-' + user.savingAccount.accountNo + ' = $ ' + user.savingAccount.balance}">
+                                Saving Account
+                            </option>
+                        </select>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input name="transferAmount" type="text" class="form-control" id="amount2"
+                                       placeholder="Amount">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td class="col-xs-4">
+                        <label for="to">To:</label>
+                    </td>
+                    <td class="col-lg-8">
+                        <select name="toAccount" class="form-control" id="to">
+                            <option value="Chequing"
+                                    th:text="${'Chequing' + ' ' + user.checkingAccount.branchNo + '-' + user.checkingAccount.accountNo + ' = $ ' + user.checkingAccount.balance}">
+                                Chequing Account
+                            </option>
+                            <option value="Saving"
+                                    th:text="${'Saving' + ' ' + user.savingAccount.branchNo + '-' + user.savingAccount.accountNo + ' = $ ' + user.savingAccount.balance}">
+                                Saving Account
+                            </option>
+                            <option value="Credit"
+                                    th:text="${'Credit' + ' ' + user.creditAccount.cardNum + ' = $ ' + user.creditAccount.balance}">
+                                Credit Account
+                            </option>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+
+    <div id="personal-accounts" class="container">
+        <table class="table table-bordered row">
+            <tr class="row info">
+                <th>Chequing / Savings</th>
+                <th>Balance</th>
+            </tr>
+            <tr class="row">
+                <td class="col-lg-8">
+                    <a th:href="${'/account/' + user.checkingAccount.accountNo + '?accountType=Chequing'}"
+                       th:text="${'Chequing ' + user.checkingAccount.branchNo + ' - ' + user.checkingAccount.accountNo}">Visit
+                        our HTML tutorial</a>
+                </td>
+                <td class="col-xs-4">
+                    <span th:text="${user.checkingAccount.balance}">566</span>
+                </td>
+            </tr>
+            <tr class="row">
+                <td class="col-lg-8">
+                    <a th:href="${'/account/' + user.savingAccount.accountNo + '?accountType=Savings'}"
+                       th:text="${'Savings ' + user.savingAccount.branchNo + ' - ' + user.savingAccount.accountNo}">Visit
+                        our HTML tutorial</a>
+                </td>
+                <td class="col-xs-4">
+                    <span th:text="${user.savingAccount.balance}">566</span>
+                </td>
+            </tr>
+            <tr class="row success">
+                <td class="col-lg-8">
+                    <span class="pull-right">Total:</span>
+                </td>
+                <td class="col-xs-4">
+                    <span th:text="${#numbers.formatDecimal(user.checkingAccount.balance + user.savingAccount.balance,1,2)}">566</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="credit-account" class="container">
+        <table class="table table-bordered row">
+            <tr class="row info">
+                <th>Credit card</th>
+                <th>Balance</th>
+            </tr>
+            <tr class="row">
+                <td class="col-lg-8">
+                    <a th:href="${'/account/' + user.creditAccount.cardNum + '?accountType=CreditCard'}"
+                       th:text="${'Credit Card ' + user.creditAccount.cardNum}">Visit our HTML tutorial</a>
+                </td>
+                <td class="col-xs-4">
+                    <span th:text="${user.creditAccount.balance}">566</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="tracker" class="container">
+        <table class="table table-bordered row">
+            <tr class="row info">
+                <th colspan="2">Expense Tracking</th>
+            </tr>
+        </table>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+</div>
+
+<!--<div layout:fragment="script">
+    <script src="js/Chart.min.js"></script>
+    <script src="js/myPieChart.js"></script>
+</div>-->
+</body>
+</html>

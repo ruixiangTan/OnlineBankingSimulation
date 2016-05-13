@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Oops!</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/errors.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+
+                <h2> Oops!</h2>
+
+                <h2>Something was wrong...</h2>
+
+                <div class="error-details">
+                    <h1 th:text="${error}">Sorry, an error has occured, Requested page not found!</h1>
+                </div>
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home </a><a href="/" class="btn btn-default btn-lg"><span
+                        class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
