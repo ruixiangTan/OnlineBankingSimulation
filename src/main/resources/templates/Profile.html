@@ -12,7 +12,7 @@
     <div th:if="${param.success}">
         You had saved your profile successfully.
     </div>
-    <form class="row form-horizontal" action="/profile" method="post">
+    <form class="row form-horizontal" th:action="@{/profile}" method="post">
         <div class="row form-group">
             <label for="input1" class="col-sm-2 control-label">First Name</label>
 

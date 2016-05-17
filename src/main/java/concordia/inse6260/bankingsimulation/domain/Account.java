@@ -1,6 +1,7 @@
 package concordia.inse6260.bankingsimulation.domain;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Account {
     protected int branchNo;
     protected int accountNo;
     protected double balance;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     protected List<Transaction> transactions;
 
     public int getInstNo() {

@@ -13,7 +13,7 @@
 
         <h2 th:text="${'Welcome Back! ' + user.firstName + ' ' + user.lastName}">Welcome, </h2>
 
-        <form class="form-inline" action="/account" method="post">
+        <form class="form-inline" th:action="@{/account}" method="POST">
 
             <table class="table table-bordered row">
                 <tr class="row info">

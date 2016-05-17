@@ -24,8 +24,8 @@ public class OnlineBankingSimulationApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        /*userRepository.save(initializeUser(new User()));
         userRepository.save(initializeUser(new User()));
-        userRepository.save(initializeUser(new User()));
-        userRepository.save(initializeUser(new User()));
+        userRepository.save(initializeUser(new User()));*/
     }
 }

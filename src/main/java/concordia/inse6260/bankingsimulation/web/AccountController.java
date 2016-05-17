@@ -113,9 +113,8 @@ public class AccountController {
 
 
     @RequestMapping(value = "/account/{accountNo}", method = RequestMethod.GET)
-    public String showAccountDetails(@PathVariable("accountNo") String accountNo, @RequestParam("accountType") String accountType, Model model) {
+    public String showAccountDetails(@PathVariable("accountNo") String accountNo, @RequestParam("accountType") String accountType, User user, Model model) {
 
-        User user = userRepository.findOne(1L);
         switch (accountType) {
             case "Chequing":
                 model.addAttribute("account", user.getCheckingAccount());
@@ -152,7 +151,7 @@ public class AccountController {
 
         userRepository.save(user);
         model.addAttribute("user", user);
-        return "/Profile?success=true";
+        return "Profile";
 
     }
 

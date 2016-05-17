@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     @RequestMapping(value = {"/", "/public"}, method = RequestMethod.GET)
-    public String Home() {
-        //model.addAttribute("isLogin", (String) session.getAttribute("isLogin"));
+    public String home() {
         return "Home";
     }
-    /*@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String Login() {
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
         return "Login";
-    }*/
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error() {
+        return "error";
+    }
 }

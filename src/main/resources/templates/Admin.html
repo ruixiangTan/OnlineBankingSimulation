@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
         layout:decorator="layout/default">
 <head>
     <title>Create New Account</title>
@@ -15,7 +15,7 @@
 
     <h2>You can create new empty account here</h2>
 
-    <form class="row form-horizontal" action="/create" method="post">
+    <form class="row form-horizontal" th:action="@{/create}" method="post">
         <div class="row form-group">
             <label for="input0" class="col-sm-2 control-label">Password</label>
 

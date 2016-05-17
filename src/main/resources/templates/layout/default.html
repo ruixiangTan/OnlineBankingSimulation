@@ -45,6 +45,7 @@
                                 <li><a href="#">Send Feedback</a></li>
                             </ul>
                         </li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Log out</a></li>
                         <!--<li th:switch="${isLogin}" class="pull-right">
                             <a th:case="'Login'" href="/Logout">Logout</a>
                             <a th:case="*" href="/login">Login</a>

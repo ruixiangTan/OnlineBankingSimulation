@@ -44,7 +44,7 @@ public class AdminController {
         user.getCreditAccount().getTransactions().clear();
 
         userRepository.save(user);
-        return "/Admin?success=true";
+        return "Admin";
     }
 
 
